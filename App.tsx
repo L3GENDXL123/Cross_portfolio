@@ -7,6 +7,7 @@ import Services from './components/Services';
 import Process from './components/Process';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import { InteractiveBackground } from './components/InteractiveBackground';
 
 const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState('home');
@@ -18,11 +19,11 @@ const App: React.FC = () => {
     return false;
   });
 
-  // Mouse position for background glow effect
+  // Mouse position for springed pointer accents
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  // Smooth springs for lag-free motion tracker
+  // Smooth springs
   const springX = useSpring(mouseX, { stiffness: 60, damping: 25 });
   const springY = useSpring(mouseY, { stiffness: 60, damping: 25 });
 
@@ -53,7 +54,7 @@ const App: React.FC = () => {
     };
 
     const handleMouseMove = (e: MouseEvent) => {
-      mouseX.set(e.clientX - 150); // Offset by half of glow width (300px)
+      mouseX.set(e.clientX - 150);
       mouseY.set(e.clientY - 150);
     };
 
@@ -66,40 +67,40 @@ const App: React.FC = () => {
   }, [mouseX, mouseY]);
 
   return (
-    <div className="relative min-h-screen overflow-hidden selection:bg-blue-500/30 selection:text-blue-900 dark:selection:text-blue-200 bg-[#f8fafc] text-[#0f172a] dark:bg-[#050505] dark:text-[#f8fafc] transition-colors duration-300">
-      {/* Cinematic Mouse Glow Background Accent */}
+    <div className="relative min-h-screen overflow-hidden selection:bg-blue-500/30 selection:text-blue-900 dark:selection:text-blue-200 text-[#0f172a] dark:text-[#f8fafc] transition-colors duration-300 bg-transparent">
+      
+      {/* Dynamic interactive glass background layer with shifting light gradients and click/touch pulses */}
+      <InteractiveBackground isDarkMode={isDarkMode} />
+
+      {/* Auxiliary interactive tracking aura element */}
       <motion.div
-        className="pointer-events-none fixed z-20 w-[300px] h-[300px] rounded-full bg-blue-500/[0.06] dark:bg-blue-500/10 blur-[80px]"
+        className="pointer-events-none fixed z-10 w-[300px] h-[300px] rounded-full bg-blue-500/[0.04] dark:bg-blue-500/10 blur-[80px]"
         style={{
           x: springX,
           y: springY,
         }}
       />
 
-      {/* Static abstract grid backdrops */}
-      <div 
-        className="pointer-events-none fixed inset-0 opacity-[0.04] dark:opacity-[0.03]" 
-        style={{ 
-          backgroundImage: isDarkMode ? 'radial-gradient(#ffffff 1px, transparent 1px)' : 'radial-gradient(#000000 1px, transparent 1px)', 
-          backgroundSize: '40px 40px' 
-        }} 
-      />
-
       <Header activeSection={activeSection} isDarkMode={isDarkMode} toggleDarkMode={() => setIsDarkMode(!isDarkMode)} />
+      
       <main className="relative z-10">
         <section id="home">
           <Hero isDarkMode={isDarkMode} />
         </section>
-        <section id="services" className="py-24 border-t border-slate-200 dark:border-white/5 relative bg-gradient-to-b from-transparent to-slate-100 dark:to-[#07070a]">
+        
+        <section id="services" className="py-24 border-t border-slate-200/50 dark:border-white/5 relative bg-transparent">
           <Services isDarkMode={isDarkMode} />
         </section>
-        <section id="process" className="py-24 border-t border-slate-200 dark:border-white/5 relative bg-slate-100 dark:bg-[#07070a]">
+        
+        <section id="process" className="py-24 border-t border-slate-200/50 dark:border-white/5 relative bg-transparent">
           <Process isDarkMode={isDarkMode} />
         </section>
-        <section id="contact" className="py-24 border-t border-slate-200 dark:border-white/5 relative bg-gradient-to-b from-slate-100 to-[#f8fafc] dark:from-[#07070a] dark:to-[#050505]">
+        
+        <section id="contact" className="py-24 border-t border-slate-200/50 dark:border-white/5 relative bg-transparent">
           <Contact isDarkMode={isDarkMode} />
         </section>
       </main>
+      
       <Footer isDarkMode={isDarkMode} />
     </div>
   );
