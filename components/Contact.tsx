@@ -13,7 +13,7 @@ const Contact: React.FC<ContactProps> = ({ isDarkMode }) => {
 
   const whatsappNumber = "2348028713828";
   const whatsappUrl = `https://wa.me/${whatsappNumber}`;
-  const myEmail = "johnson@crossweb.sh"; // Professional branding placeholder
+  const myEmail = "johnsonxcel419@gmail.com";
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

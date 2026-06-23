@@ -27,7 +27,7 @@ const Hero: React.FC<HeroProps> = ({ isDarkMode }) => {
   };
 
   return (
-    <div className="relative min-h-screen pt-44 pb-24 overflow-hidden flex flex-col justify-center bg-[#f8fafc] dark:bg-[#050505] transition-colors duration-300">
+    <div className="relative min-h-screen pt-44 pb-24 overflow-hidden flex flex-col justify-center bg-transparent transition-colors duration-300">
       
       {/* Background radial soft light blobs */}
       <div className="absolute top-0 left-1/4 w-[500px] h-[500px] rounded-full bg-blue-600/[0.08] dark:bg-blue-600/[0.04] blur-[150px] pointer-events-none" />
@@ -142,7 +142,7 @@ const Hero: React.FC<HeroProps> = ({ isDarkMode }) => {
             className="px-10 py-4.5 bg-white dark:bg-black hover:bg-slate-50 dark:hover:bg-neutral-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-white/10 rounded-xl font-bold text-sm transition-all hover:scale-[1.03] active:scale-[0.98] flex items-center gap-2"
           >
             <Terminal className="w-4 h-4 text-blue-500 dark:text-blue-400" />
-            Quick Telegram / WA
+            Quick WhatsApp
           </a>
         </motion.div>
         

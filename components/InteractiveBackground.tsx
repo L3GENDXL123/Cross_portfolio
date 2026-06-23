@@ -225,17 +225,65 @@ export const InteractiveBackground: React.FC<InteractiveBackgroundProps> = ({ is
         </AnimatePresence>
       </div>
 
-      {/* LAYER 3: APPLE IOS style heavy glass panel lens */}
+      {/* LAYER 3: Liquid Glass Specular & Refraction Waves */}
+      <div className="absolute inset-0 pointer-events-none opacity-45 dark:opacity-35 mix-blend-overlay">
+        {/* Sweeping diagonal liquid glass reflection sheet */}
+        <motion.div
+          className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/[0.12] dark:via-white/[0.05] to-white/0"
+          style={{ transform: 'skewX(-25deg) scale(1.5)' }}
+          animate={{
+            x: ['-40%', '40%', '-40%'],
+          }}
+          transition={{
+            duration: 15,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+
+        {/* Top convex liquid lens highlight */}
+        <motion.div
+          className="absolute top-0 inset-x-0 h-[35%] bg-gradient-to-b from-white/[0.16] dark:from-white/[0.06] to-transparent rounded-[50%] filter blur-[20px]"
+          style={{ transform: 'translateY(-15%) scaleX(1.1)' }}
+          animate={{
+            y: ['-15%', '-10%', '-15%'],
+            scaleX: [1.1, 1.18, 1.1],
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+
+        {/* Bottom liquid pool refraction glow */}
+        <motion.div
+          className="absolute bottom-0 inset-x-0 h-[25%] bg-gradient-to-t from-white/[0.08] dark:from-white/[0.02] to-transparent rounded-[50%] filter blur-[25px]"
+          style={{ transform: 'translateY(10%) scaleX(1.2)' }}
+          animate={{
+            y: ['10%', '5%', '10%'],
+          }}
+          transition={{
+            duration: 12,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+      </div>
+
+      {/* LAYER 4: APPLE IOS style heavy glass panel lens */}
       <div 
-        className="absolute inset-0 backdrop-blur-[70px] sm:backdrop-blur-[115px] bg-white/[0.22] dark:bg-[#030305]/[0.48] transition-colors duration-500" 
+        className="absolute inset-0 backdrop-blur-[110px] sm:backdrop-blur-[150px] bg-white/[0.16] dark:bg-[#030305]/[0.46] transition-colors duration-500" 
         style={{
-          boxShadow: 'inset 0 0 100px rgba(255,255,255,0.03)',
+          boxShadow: isDarkMode 
+            ? 'inset 0 1px 2px rgba(255,255,255,0.12), inset 0 -1px 2px rgba(0,0,0,0.4), inset 0 0 120px rgba(255,255,255,0.015)' 
+            : 'inset 0 1.5px 3px rgba(255,255,255,0.85), inset 0 -1px 2px rgba(0,0,0,0.04), inset 0 0 120px rgba(255,255,255,0.035)',
         }}
       />
 
       {/* Subtle organic noise or geometric pattern overlaid above the glass layer for tactility */}
       <div 
-        className="absolute inset-0 opacity-[0.03] dark:opacity-[0.02]" 
+        className="absolute inset-0 opacity-[0.025] dark:opacity-[0.015]" 
         style={{ 
           backgroundImage: isDarkMode ? 'radial-gradient(#ffffff 1px, transparent 1px)' : 'radial-gradient(#0f172a 1px, transparent 1px)', 
           backgroundSize: '48px 48px' 
