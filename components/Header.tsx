@@ -26,7 +26,7 @@ const Header: React.FC<HeaderProps> = ({ activeSection, isDarkMode, toggleDarkMo
   };
 
   return (
-    <header className="fixed top-4 left-4 right-4 z-50 max-w-5xl mx-auto">
+    <header className="hidden md:block fixed top-4 left-4 right-4 z-50 max-w-5xl mx-auto">
       <div className="glass-morphism rounded-2xl px-6 py-3.5 shadow-xl border border-slate-200/50 dark:border-white/5 transition-all">
         <div className="flex justify-between items-center">
           
